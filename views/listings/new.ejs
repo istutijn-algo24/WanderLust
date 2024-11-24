@@ -1,0 +1,79 @@
+<%layout("/layouts/boilerplate")%>
+<head>
+    <!-- Include Bootstrap CSS and JS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="row">
+    <div class="col-8 offset-2">
+        <h3>Create a New Listing</h3>
+        <form method="POST" 
+        action="/listings" 
+        novalidate class="needs-validation" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input id="title" name="listing[title]" placeholder="Enter title" type="text" class="form-control" required />
+                <div class="valid-feedback">Title looks good!</div>
+                <div class="invalid-feedback">Please enter a title.</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea id="description" name="listing[description]" placeholder="Enter description" class="form-control" required></textarea>
+                <div class="invalid-feedback">Description should be a short description!</div>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="image">Listing Image:</label>
+                <input type="file" name="listing[image]" id="image" class="form-control" required>
+              
+            </div>
+
+
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input id="price" name="listing[price]" placeholder="Enter price" type="text" class="form-control" required />
+                <div class="invalid-feedback">Please enter a valid price!</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input id="location" name="listing[location]" placeholder="Enter location" type="text" class="form-control" required />
+                <div class="invalid-feedback">Please enter a valid location!</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="country" class="form-label">Country</label>
+                <input id="country" name="listing[country]" placeholder="Enter country" type="text" class="form-control" required />
+                <div class="invalid-feedback">Please enter a valid country name!</div>
+            </div>
+
+            <button class="btn btn-dark add-btn" type="submit">Add</button>
+            <br><br>
+        </form>
+    </div>
+</div>
+
+<script>
+    // JavaScript to enable Bootstrap's validation
+    (function () {
+        'use strict'
+        // Fetch all forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>
+</body>
